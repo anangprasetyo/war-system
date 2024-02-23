@@ -54,7 +54,8 @@ def check_valid_topik(pilihan=""):
 
 with st.form(key="myform", clear_on_submit=True):
     title = db.reference("/title").get()
-    topik = db.reference("/topik").get()
+    data_ref = db.reference("/topik")
+    topik = data_ref.order_by_child("judul").get()
     st.title(title)
     listTopik = []
     listTopik.append("Tidak ada")
@@ -65,8 +66,7 @@ with st.form(key="myform", clear_on_submit=True):
             listTopik.append(temp["judul"])
 
     nim = st.text_input("NIM")
-    listOrder = listTopik.sort()
-    pilihan = st.radio("Pilih Topik Riset", listOrder)
+    pilihan = st.radio("Pilih Topik Riset", listTopik)
     submit_btn = st.form_submit_button('Submit', type="primary")
 
     if submit_btn:
