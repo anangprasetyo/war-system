@@ -65,7 +65,7 @@ with st.form(key="myform", clear_on_submit=True):
             listTopik.append(temp["judul"])
 
     nim = st.text_input("NIM")
-    pilihan = st.radio("Pilih Topik Riset", listTopik)
+    pilihan = st.radio("Pilih Topik Riset", listTopik.sort())
     submit_btn = st.form_submit_button('Submit', type="primary")
 
     if submit_btn:
