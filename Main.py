@@ -88,9 +88,10 @@ with st.form(key="myform", clear_on_submit=True):
                             db.reference("/pilihan").update({"p" + nim: {"nim": int(nim), "nama": pemilih["nama"], "judul": pilihan}})
         
                     st.info("Selamat anda berhasil memilih topik " + pilihan)
+                    time.sleep(2)
                 else:
                     st.info("Topik sudah tidak dapat dipilih")
-                time.sleep(1)
+                    time.sleep(1)
                 st.rerun()
             else:
                 if check_valid_pemilih(nim):
