@@ -49,6 +49,9 @@ with st.form(key="myform", clear_on_submit=True):
     submit_btn = st.form_submit_button('Submit', type="primary")
 
     if submit_btn:
+        if pilihan == "Tidak ada":
+            st.info("Pilih Topik terlebih dahulu")
+            
         if check_valid_pemilih(nim) and check_exist_pemilih(nim):
             for t in topik:
                 temp = db.reference("/topik/" + t).get()
@@ -60,6 +63,6 @@ with st.form(key="myform", clear_on_submit=True):
             time.sleep(1)
             st.rerun()
         else:
-            st.subheader("Anda tidak memiliki hak untuk memilih")
+            st.info("Anda tidak memiliki hak untuk memilih")
             time.sleep(1)
             st.rerun()
