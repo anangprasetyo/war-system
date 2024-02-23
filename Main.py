@@ -38,6 +38,19 @@ def validasi_awal(nim=""):
     
     return status
 
+def check_valid_topik(pilihan=""):
+    status = True
+
+    if pilihan!="":
+        temp = db.reference("/pilihan").get()
+        if not pilihan=='':
+            for p in pilihan:
+                temp = db.reference("/pilihan/" + p).get()
+                if temp["judul"] == pilihan:
+                    status = False
+    
+    return status
+
 with st.form(key="myform", clear_on_submit=True):
     title = db.reference("/title").get()
     topik = db.reference("/topik").get()
@@ -64,14 +77,17 @@ with st.form(key="myform", clear_on_submit=True):
         
         else:
             if check_valid_pemilih(nim) and check_exist_pemilih(nim):
-                for t in topik:
-                    temp = db.reference("/topik/" + t).get()
-                    if temp["judul"] == pilihan:
-                        db.reference("/topik/" + t).update({"status": False})
-                        pemilih = db.reference("/pemilih/" + "p" + nim).get()
-                        db.reference("/pilihan").update({"p" + nim: {"nim": int(nim), "nama": pemilih["nama"], "judul": pilihan}})
-    
-                st.info("Selamat anda berhasil memilih topik " + pilihan)
+                if check_valid_topik(pilihan):
+                    for t in topik:
+                        temp = db.reference("/topik/" + t).get()
+                        if temp["judul"] == pilihan:
+                            db.reference("/topik/" + t).update({"status": False})
+                            pemilih = db.reference("/pemilih/" + "p" + nim).get()
+                            db.reference("/pilihan").update({"p" + nim: {"nim": int(nim), "nama": pemilih["nama"], "judul": pilihan}})
+        
+                    st.info("Selamat anda berhasil memilih topik " + pilihan)
+                else:
+                    st.info("Topik sudah tidak terpilih")
                 time.sleep(1)
                 st.rerun()
             else:
