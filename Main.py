@@ -1,4 +1,5 @@
 import time
+import random
 import streamlit as st
 import firebase_admin
 from firebase_admin import db, credentials
@@ -68,7 +69,8 @@ with st.form(key="myform", clear_on_submit=True):
     submit_btn = st.form_submit_button('Submit', type="primary")
 
     if submit_btn:
-        time.sleep(1)
+        rnd = random.uniform(0, 3)
+        time.sleep(rnd)
         if validasi_awal(nim):
             st.info("Pastikan nim sudah sesuai")
             
