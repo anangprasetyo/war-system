@@ -42,10 +42,10 @@ def check_valid_topik(pilihan=""):
     status = True
 
     if pilihan!="":
-        temp = db.reference("/pilihan").get()
-        if not pilihan=='':
-            for p in pilihan:
-                temp = db.reference("/pilihan/" + p).get()
+        opsi = db.reference("/pilihan").get()
+        if not opsi=='':
+            for n in opsi:
+                temp = db.reference("/pilihan/" + n).get()
                 if temp["judul"] == pilihan:
                     status = False
     
