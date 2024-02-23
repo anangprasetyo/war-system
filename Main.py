@@ -91,7 +91,7 @@ with st.form(key="myform", clear_on_submit=True):
                     time.sleep(2)
                 else:
                     st.info("Topik sudah tidak dapat dipilih")
-                    time.sleep(1)
+                    time.sleep(2)
                 st.rerun()
             else:
                 if check_valid_pemilih(nim):
