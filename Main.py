@@ -7,7 +7,7 @@ if not firebase_admin._apps:
     cred = credentials.Certificate("credentials.json")
     firebase_admin.initialize_app(cred, {"databaseURL": "https://war-systems-default-rtdb.firebaseio.com/"})
 
-def check_exist_pemilih(val):
+def check_exist_pemilih(val=""):
     status = True
     
     pilihan = db.reference("/pilihan").get()
@@ -20,7 +20,7 @@ def check_exist_pemilih(val):
 
     return status
 
-def check_valid_pemilih(val):
+def check_valid_pemilih(val=""):
     status = False
 
     pemilih = db.reference("/pemilih").get()
