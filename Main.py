@@ -11,7 +11,6 @@ def check_exist_pemilih(val=""):
     status = True
     
     pilihan = db.reference("/pilihan").get()
-
     if not pilihan=='':
         for p in pilihan:
             temp = db.reference("/pilihan/" + p).get()
@@ -56,6 +55,7 @@ with st.form(key="myform", clear_on_submit=True):
     submit_btn = st.form_submit_button('Submit', type="primary")
 
     if submit_btn:
+        time.sleep(1)
         if validasi_awal(nim):
             st.info("Pastikan nim sudah sesuai")
             
