@@ -54,7 +54,7 @@ with st.form(key="myform", clear_on_submit=True):
                 temp = db.reference("/topik/" + t).get()
                 if temp["judul"] == pilihan:
                     db.reference("/topik/" + t).update({"status": False})
-                    db.reference("/pilihan").update({"p" + nim: {"nim": nim, "nama": nama, "judul": pilihan}})
+                    db.reference("/pilihan").update({"p" + nim: {"nim": int(nim), "nama": nama, "judul": pilihan}})
 
             st.info("Selamat anda berhasil memilih topik " + pilihan)
             time.sleep(1)
