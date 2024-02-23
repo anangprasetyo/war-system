@@ -75,6 +75,9 @@ with st.form(key="myform", clear_on_submit=True):
                 time.sleep(1)
                 st.rerun()
             else:
-                st.info("Anda tidak memiliki hak untuk memilih")
+                if check_valid_pemilih(nim):
+                    st.info("Anda tidak memiliki hak untuk memilih")
+                else
+                    st.info("Anda sudah memilih topik")
                 time.sleep(1)
                 st.rerun()
