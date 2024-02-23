@@ -60,7 +60,7 @@ with st.form(key="myform", clear_on_submit=True):
         if validasi_awal(nim, nama):
             st.info("Pastikan nim atau nama sudah sesuai")
             
-        else if pilihan == "Tidak ada":
+        elif pilihan == "Tidak ada":
             st.info("Pilih Topik terlebih dahulu")
         
         else 
