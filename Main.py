@@ -31,7 +31,7 @@ def check_valid_pemilih(val=""):
 
     return status
 
-def validasi_awal(nim="", nama="")
+def validasi_awal(nim="", nama=""):
     status = False
 
     if nim=="" or nama ==""
