@@ -61,3 +61,5 @@ with st.form(key="myform", clear_on_submit=True):
             st.rerun()
         else:
             st.subheader("Anda tidak memiliki hak untuk memilih")
+            time.sleep(1)
+            st.rerun()
