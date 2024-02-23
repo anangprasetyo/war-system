@@ -63,7 +63,7 @@ with st.form(key="myform", clear_on_submit=True):
         elif pilihan == "Tidak ada":
             st.info("Pilih Topik terlebih dahulu")
         
-        else 
+        else:
             if check_valid_pemilih(nim) and check_exist_pemilih(nim):
                 for t in topik:
                     temp = db.reference("/topik/" + t).get()
