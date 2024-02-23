@@ -31,6 +31,14 @@ def check_valid_pemilih(val=""):
 
     return status
 
+def validasi_awal(nim="", nama="")
+    status = False
+
+    if nim=="" or nama ==""
+        status = True
+    
+    return status
+
 with st.form(key="myform", clear_on_submit=True):
     title = db.reference("/title").get()
     topik = db.reference("/topik").get()
@@ -49,20 +57,24 @@ with st.form(key="myform", clear_on_submit=True):
     submit_btn = st.form_submit_button('Submit', type="primary")
 
     if submit_btn:
-        if pilihan == "Tidak ada":
-            st.info("Pilih Topik terlebih dahulu")
+        if validasi_awal(nim, nama):
+            st.info("Pastikan nim atau nama sudah sesuai")
             
-        if check_valid_pemilih(nim) and check_exist_pemilih(nim):
-            for t in topik:
-                temp = db.reference("/topik/" + t).get()
-                if temp["judul"] == pilihan:
-                    db.reference("/topik/" + t).update({"status": False})
-                    db.reference("/pilihan").update({"p" + nim: {"nim": int(nim), "nama": nama, "judul": pilihan}})
-
-            st.info("Selamat anda berhasil memilih topik " + pilihan)
-            time.sleep(1)
-            st.rerun()
-        else:
-            st.info("Anda tidak memiliki hak untuk memilih")
-            time.sleep(1)
-            st.rerun()
+        else if pilihan == "Tidak ada":
+            st.info("Pilih Topik terlebih dahulu")
+        
+        else 
+            if check_valid_pemilih(nim) and check_exist_pemilih(nim):
+                for t in topik:
+                    temp = db.reference("/topik/" + t).get()
+                    if temp["judul"] == pilihan:
+                        db.reference("/topik/" + t).update({"status": False})
+                        db.reference("/pilihan").update({"p" + nim: {"nim": int(nim), "nama": nama, "judul": pilihan}})
+    
+                st.info("Selamat anda berhasil memilih topik " + pilihan)
+                time.sleep(1)
+                st.rerun()
+            else:
+                st.info("Anda tidak memiliki hak untuk memilih")
+                time.sleep(1)
+                st.rerun()
