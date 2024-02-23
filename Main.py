@@ -87,7 +87,7 @@ with st.form(key="myform", clear_on_submit=True):
         
                     st.info("Selamat anda berhasil memilih topik " + pilihan)
                 else:
-                    st.info("Topik sudah tidak terpilih")
+                    st.info("Topik sudah tidak dapat dipilih")
                 time.sleep(1)
                 st.rerun()
             else:
