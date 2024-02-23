@@ -34,7 +34,7 @@ def check_valid_pemilih(val=""):
 def validasi_awal(nim="", nama=""):
     status = False
 
-    if nim=="" or nama ==""
+    if nim=="" or nama =="":
         status = True
     
     return status
