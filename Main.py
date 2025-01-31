@@ -54,7 +54,7 @@ def check_valid_topik(pilihan=""):
 
 with st.form(key="myform", clear_on_submit=True):
     title = db.reference("/title").get()
-    data_ref = db.reference("/topik")
+    data_ref = db.reference("/topik").get()
     topik = data_ref.order_by_child("judul").get()
     st.title(title)
     listTopik = []
