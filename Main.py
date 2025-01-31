@@ -82,7 +82,7 @@ with st.form(key="myform", clear_on_submit=True):
             if check_valid_pemilih(nim):
                 if check_exist_pemilih(nim):
                     st.info("Anda sudah memilih topik")
-                else
+                else:
                     if check_valid_topik(pilihan):
                         for t in topik:
                             temp = db.reference("/topik/" + t).get()
