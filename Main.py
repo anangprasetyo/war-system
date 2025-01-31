@@ -79,20 +79,23 @@ with st.form(key="myform", clear_on_submit=True):
             st.info("Pilih Topik terlebih dahulu")
         
         else:
-            if check_valid_pemilih(nim) and check_exist_pemilih(nim):
-                if check_valid_topik(pilihan):
-                    for t in topik:
-                        temp = db.reference("/topik/" + t).get()
-                        if temp["judul"] == pilihan:
-                            db.reference("/topik/" + t).update({"status": False})
-                            pemilih = db.reference("/pemilih/" + "p" + nim).get()
-                            db.reference("/pilihan").update({"p" + nim: {"nim": int(nim), "nama": pemilih["nama"], "judul": pilihan}})
-        
-                    st.info("Selamat anda berhasil memilih topik " + pilihan)
-                    time.sleep(2)
-                else:
-                    st.info("Topik sudah tidak dapat dipilih")
-                    time.sleep(2)
+            if check_valid_pemilih(nim):
+                if check_exist_pemilih(nim):
+                    st.info("Anda sudah memilih topik")
+                else
+                    if check_valid_topik(pilihan):
+                        for t in topik:
+                            temp = db.reference("/topik/" + t).get()
+                            if temp["judul"] == pilihan:
+                                db.reference("/topik/" + t).update({"status": False})
+                                pemilih = db.reference("/pemilih/" + "p" + nim).get()
+                                db.reference("/pilihan").update({"p" + nim: {"nim": int(nim), "nama": pemilih["nama"], "judul": pilihan}})
+            
+                        st.info("Selamat anda berhasil memilih topik " + pilihan)
+                        time.sleep(2)
+                    else:
+                        st.info("Topik sudah tidak dapat dipilih")
+                        time.sleep(2)
                 st.rerun()
             else:
                 if check_valid_pemilih(nim):
