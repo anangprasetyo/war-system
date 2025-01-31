@@ -9,10 +9,10 @@ if not firebase_admin._apps:
     firebase_admin.initialize_app(cred, {"databaseURL": "https://war-systems-default-rtdb.firebaseio.com/"})
 
 # Get a database reference to our posts
-ref = db.reference('/pilihan')
+ref = db.reference('/title')
 
 # Read the data at the posts reference (this is a blocking operation)
-print(ref.get())
+st.info(ref.get())
 
 # def check_exist_pemilih(val=""):
 #     status = True
